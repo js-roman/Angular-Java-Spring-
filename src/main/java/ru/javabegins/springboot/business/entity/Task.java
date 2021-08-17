@@ -1,132 +1,56 @@
 package ru.javabegins.springboot.business.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+
 public class Task {
-    private Long id;
-    private String title;
-    private Short completed;
-    private Timestamp taskDate;
-    private Long priorityId;
-    private Long categoryId;
-    private Long userId;
-    private Category categoryByCategoryId;
-    private Priority priorityByPriorityId;
-    private UserData userDataByUserId;
 
     @Id
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Basic
-    @Column(name = "title")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @Column(name = "title", nullable = false, length = -1)
+    private String title;
 
     @Basic
-    @Column(name = "completed")
-    public Short getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Short completed) {
-        this.completed = completed;
-    }
+    @Column(name = "completed", nullable = true)
+    private Short completed;
 
     @Basic
-    @Column(name = "task_date")
-    public Timestamp getTaskDate() {
-        return taskDate;
-    }
-
-    public void setTaskDate(Timestamp taskDate) {
-        this.taskDate = taskDate;
-    }
+    @Column(name = "task_date", nullable = true)
+    private Timestamp taskDate;
 
     @Basic
-    @Column(name = "priority_id")
-    public Long getPriorityId() {
-        return priorityId;
-    }
-
-    public void setPriorityId(Long priorityId) {
-        this.priorityId = priorityId;
-    }
+    @Column(name = "priority_id", nullable = true)
+    private Long priorityId;
 
     @Basic
-    @Column(name = "category_id")
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+    @Column(name = "category_id", nullable = true)
+    private Long categoryId;
 
     @Basic
-    @Column(name = "user_id")
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return Objects.equals(id, task.id) && Objects.equals(title, task.title) && Objects.equals(completed, task.completed) && Objects.equals(taskDate, task.taskDate) && Objects.equals(priorityId, task.priorityId) && Objects.equals(categoryId, task.categoryId) && Objects.equals(userId, task.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, completed, taskDate, priorityId, categoryId, userId);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    public Category getCategoryByCategoryId() {
-        return categoryByCategoryId;
-    }
-
-    public void setCategoryByCategoryId(Category categoryByCategoryId) {
-        this.categoryByCategoryId = categoryByCategoryId;
-    }
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
-    public Priority getPriorityByPriorityId() {
-        return priorityByPriorityId;
-    }
+    private Priority priorityByPriorityId;
 
-    public void setPriorityByPriorityId(Priority priorityByPriorityId) {
-        this.priorityByPriorityId = priorityByPriorityId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category categoryByCategoryId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public UserData getUserDataByUserId() {
-        return userDataByUserId;
-    }
+    private UserData userDataByUserId;
 
-    public void setUserDataByUserId(UserData userDataByUserId) {
-        this.userDataByUserId = userDataByUserId;
-    }
+
 }

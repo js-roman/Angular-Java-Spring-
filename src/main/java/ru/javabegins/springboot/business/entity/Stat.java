@@ -1,76 +1,35 @@
 package ru.javabegins.springboot.business.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+
 public class Stat {
-    private Long id;
-    private Long completedTotal;
-    private Long uncompletedTotal;
-    private Long userId;
-    private UserData userDataByUserId;
 
     @Id
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Basic
-    @Column(name = "completed_total")
-    public Long getCompletedTotal() {
-        return completedTotal;
-    }
-
-    public void setCompletedTotal(Long completedTotal) {
-        this.completedTotal = completedTotal;
-    }
+    @Column(name = "completed_total", nullable = false)
+    private Long completedTotal;
 
     @Basic
-    @Column(name = "uncompleted_total")
-    public Long getUncompletedTotal() {
-        return uncompletedTotal;
-    }
-
-    public void setUncompletedTotal(Long uncompletedTotal) {
-        this.uncompletedTotal = uncompletedTotal;
-    }
+    @Column(name = "uncompleted_total", nullable = false)
+    private Long uncompletedTotal;
 
     @Basic
-    @Column(name = "user_id")
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Stat stat = (Stat) o;
-        return Objects.equals(id, stat.id) && Objects.equals(completedTotal, stat.completedTotal) && Objects.equals(uncompletedTotal, stat.uncompletedTotal) && Objects.equals(userId, stat.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, completedTotal, uncompletedTotal, userId);
-    }
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public UserData getUserDataByUserId() {
-        return userDataByUserId;
-    }
+    private UserData userDataByUserId;
 
-    public void setUserDataByUserId(UserData userDataByUserId) {
-        this.userDataByUserId = userDataByUserId;
-    }
+
 }

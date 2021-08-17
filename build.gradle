@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.3'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
 
@@ -16,19 +16,20 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter'
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.3'
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.3'
-    implementation 'org.springframework.boot:spring-boot-starter-mail:2.5.3'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.3' // spring + jpa/hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.3' // веб технологии
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.5.3' // безопасность
+    implementation 'org.springframework.boot:spring-boot-starter-mail:2.5.3' // работа с email
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.3'
+    // валидация объектов - начиная с springboot 2.3 нужно подключать отдельно (раньше библиотека подключалась автоматически)
 
-    implementation group: 'io.jsonwebtoken', name:'jjwt', version:'0.9.1'
-    implementation group: 'org.postgresql', name:'postgresql', version: '42.2.1'
-//    implementation 'junit:junit:4.13.1'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1' // библиотека для работы с jwt
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.1' // коннектор для БД PostgreSQL
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.3'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+
 
 }
 
