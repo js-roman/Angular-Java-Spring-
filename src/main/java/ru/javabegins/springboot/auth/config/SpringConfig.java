@@ -10,8 +10,23 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SpringConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().disable();
-        http.httpBasic().disable();
-        http.requiresChannel().anyRequest().requiresSecure();
+
+        // порядок следования настроек внутри метода - неважен
+
+
+
+        /* если используется другая клиентская технология (не SpringMVC, а например Angular, React и пр.),
+            то выключаем встроенную Spring-защиту от CSRF атак,
+            иначе запросы от клиента не будут обрабатываться, т.к. Spring Security будет пытаться в каждом входящем запроcе искать спец. токен для защиты от CSRF
+        */
+        http.csrf().disable(); // на время разработки проекта не будет ошибок (для POST, PUT и др. запросов) - недоступен и т.д.
+
+
+        http.formLogin().disable(); // отключаем, т.к. форма авторизации создается не на Spring технологии (например, Spring MVC + JSP), а на любой другой клиентской технологии
+        http.httpBasic().disable(); // отключаем стандартную браузерную форму авторизации
+
+        http.requiresChannel().anyRequest().requiresSecure(); // обязательное исп. HTTPS
+
+
     }
 }

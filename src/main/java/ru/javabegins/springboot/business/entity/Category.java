@@ -1,43 +1,49 @@
 package ru.javabegins.springboot.business.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.javabegins.springboot.auth.entity.User;
 
 import javax.persistence.*;
-import java.util.Collection;
-
+@EqualsAndHashCode
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
 
 public class Category {
 
+    // указываем, что поле заполняется в БД
+    // нужно, когда добавляем новый объект и он возвращается уже с новым id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Basic
+
     @Column(name = "title", nullable = false, length = -1)
     private String title;
 
-    @Basic
+
     @Column(name = "completed_count", nullable = true)
     private Long completedCount;
 
-    @Basic
+
     @Column(name = "uncompleted_count", nullable = true)
     private Long uncompletedCount;
 
-    @Basic
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+//    @Basic
+//    @Column(name = "user_id", nullable = false)
+//    private Long userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private UserData userDataByUserId;
+    private User user;
 
-    @OneToMany(mappedBy = "categoryByCategoryId")
-    private Collection<Task> tasksById;
+//    @OneToMany(mappedBy = "categoryByCategoryId")
+//    private Collection<Task> tasksById;
 
 
 
