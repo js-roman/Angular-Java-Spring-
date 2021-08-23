@@ -33,4 +33,10 @@ public class CategoryService {
     public List<Category> search(String title, String email) {
         return categoryRepository.search(title, email);
     }
+
+    public Category findById(Long id){
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(categoryRepository.findById(id).get());
+        return categoryRepository.findById(id).get();
+    }
 }

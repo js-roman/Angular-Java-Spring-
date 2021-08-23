@@ -2,7 +2,6 @@ package ru.javabegins.springboot.business.contoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +70,19 @@ public class CategoryController {
         MyLogger.logInfo("search: title=" + categorySearchValues.getTitle() + ", email=" + categorySearchValues.getEmail());
         List<Category> list = categoryService.search(categorySearchValues.getTitle(), categorySearchValues.getEmail());
         return ResponseEntity.ok(list);
+
+    }
+
+    @PostMapping("/id")
+    public ResponseEntity findById(@RequestBody Long id){
+        MyLogger.logInfo("findById: "+id);
+        try{
+            return new ResponseEntity(categoryService.findById(id), HttpStatus.OK);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return new ResponseEntity("id not found", HttpStatus.OK);
+        }
 
     }
 
