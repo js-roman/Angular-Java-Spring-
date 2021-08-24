@@ -6,9 +6,11 @@ import ru.javabegins.springboot.business.entity.Category;
 import ru.javabegins.springboot.business.entity.Priority;
 import ru.javabegins.springboot.repository.PriorityRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class PriorityService {
     private PriorityRepository priorityRepository;
 

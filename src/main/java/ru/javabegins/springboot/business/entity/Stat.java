@@ -32,7 +32,7 @@ public class Stat {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User userDataByUserId;
+    private User user;
 
 
 }
