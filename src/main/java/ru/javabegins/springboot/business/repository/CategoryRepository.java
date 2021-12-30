@@ -1,4 +1,4 @@
-package ru.javabegins.springboot.repository;
+package ru.javabegins.springboot.business.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -8,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.javabegins.springboot.business.entity.Priority;
 import ru.javabegins.springboot.business.search.PrioritySearchValues;
-import ru.javabegins.springboot.service.PriorityService;
-import ru.javabegins.springboot.service.PriorityService;
+import ru.javabegins.springboot.business.service.PriorityService;
 import ru.javabegins.springboot.util.MyLogger;
 
 import java.util.List;

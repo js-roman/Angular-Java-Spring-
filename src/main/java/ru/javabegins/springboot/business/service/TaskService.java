@@ -1,14 +1,14 @@
-package ru.javabegins.springboot.service;
+package ru.javabegins.springboot.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import ru.javabegins.springboot.business.entity.Task;
-import ru.javabegins.springboot.repository.TaskRepository;
-import ru.javabegins.springboot.util.MyLogger;
+import ru.javabegins.springboot.business.repository.TaskRepository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,7 +21,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<Task> findAll(@RequestBody String email) {
+    public List<Task> findAll(String email) {
         return taskRepository.findByUserEmailOrderByTitleAsc(email);
     }
 
@@ -30,15 +30,20 @@ public class TaskService {
     }
 
     public Task update(Task task) {
-        return repository.save(task);
+        return taskRepository.save(task);
     }
 
     public void delete(Long id) {
         taskRepository.deleteById(id);
     }
 
-    public Task findById(Long id){
+    public Task findById(Long id) {
         return taskRepository.findById(id).get();
     }
+
+    public Page<Task> find(String text, Integer completed, Long priorityId, Long categoryId, String email, Date dateFrom, Date dateTo, PageRequest paging) {
+        return taskRepository.find(text, completed, priorityId, categoryId, email, dateFrom, dateTo, paging);
+    }
+
 
 }

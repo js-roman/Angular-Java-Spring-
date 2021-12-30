@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.javabegins.springboot.business.entity.Category;
 import ru.javabegins.springboot.business.search.CategorySearchValues;
-import ru.javabegins.springboot.service.CategoryService;
+import ru.javabegins.springboot.business.service.CategoryService;
 import ru.javabegins.springboot.util.MyLogger;
 
 import java.util.List;

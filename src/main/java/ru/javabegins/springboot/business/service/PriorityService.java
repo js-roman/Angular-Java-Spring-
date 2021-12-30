@@ -1,10 +1,9 @@
-package ru.javabegins.springboot.service;
+package ru.javabegins.springboot.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.javabegins.springboot.business.entity.Category;
 import ru.javabegins.springboot.business.entity.Priority;
-import ru.javabegins.springboot.repository.PriorityRepository;
+import ru.javabegins.springboot.business.repository.PriorityRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;

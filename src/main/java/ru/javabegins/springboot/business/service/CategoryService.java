@@ -1,14 +1,15 @@
-package ru.javabegins.springboot.service;
+package ru.javabegins.springboot.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.javabegins.springboot.business.entity.Category;
-import ru.javabegins.springboot.repository.CategoryRepository;
+import ru.javabegins.springboot.business.repository.CategoryRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
